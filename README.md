@@ -1,4 +1,11 @@
-# Getting Started
+# YouTube DOracle
+
+DOracle based on iExec providing YouTube API data on-chain.
+
+Particularly, use the YouTube API to retrieve a video description using its ID. 
+Then, check if the description contains the input string, e.g. a content hash.
+
+## Getting Started
 
 iExec quick start (https://docs.iex.ec/for-developers/quick-start-for-developers):
 ```
