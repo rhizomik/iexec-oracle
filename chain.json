@@ -1,0 +1,11 @@
+{
+  "default": "goerli",
+  "chains": {
+    "goerli": {},
+    "viviani": {},
+    "mainnet": {},
+    "bellecour": {},
+    "enterprise": {},
+    "enterprise-testnet": {}
+  }
+}

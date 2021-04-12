@@ -1,0 +1,19 @@
+{
+  "name": "yt-oracle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ethers": "^5.0.32"
+  },
+  "devDependencies": {
+    "@iexec/doracle": "^5.2.1-2",
+    "iexec": "^5.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
