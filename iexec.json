@@ -18,8 +18,30 @@
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-oracle",
     "type": "DOCKER",
-    "multiaddr": "docker.io/rogargon/yt-oracle:0.0.2",
-    "checksum": "0xb21e4a147ddcaf18d1c0f3fd918a5d62a5763ef33e5cf949e976526f39ff4423",
+    "multiaddr": "docker.io/rogargon/yt-oracle:0.0.3",
+    "checksum": "0x29af88eeb7010fd5cfff4df701f8ad79dbaac9b42a7e58bfabd3157bb7eec5d1",
     "mrenclave": ""
+  },
+  "dapps": [
+    {
+      "name": "Recomanded-dapp-for-MyDataset",
+      "addresses": {
+        "5": "0x0000000000000000000000000000000000000000"
+      },
+      "buyConf": {
+        "params": {
+          "iexec_args": ""
+        },
+        "tag": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "trust": "0",
+        "callback": "0x0000000000000000000000000000000000000000"
+      }
+    }
+  ],
+  "dataset": {
+    "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
+    "name": "my-dataset",
+    "multiaddr": "/ipfs/QmW2WQi7j6c7UgJTarActp7tDNikE4B2qXtFCfLPdsgaTQ",
+    "checksum": "0x0000000000000000000000000000000000000000000000000000000000000000"
   }
 }
