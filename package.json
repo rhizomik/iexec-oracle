@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@iexec/doracle": "^5.2.1-2",
-    "iexec": "^5.2.0"
+    "iexec": "^5.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
