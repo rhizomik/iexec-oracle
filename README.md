@@ -77,7 +77,7 @@ iexec dataset push-secret 0x5269d1AB2553cBEf5B2951635537c651df809c64 --secret-pa
 ## Run Application
 
 ```
-iexec app run 0x6432775CF26F100fD573241dAAfA81F10333ef28 --dataset 0x5269d1AB2553cBEf5B2951635537c651df809c64 --watch --chain goerli --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
+iexec app run --tag tee 0x6432775CF26F100fD573241dAAfA81F10333ef28 --dataset 0xFDD49ECd37aa3eBD0Acfb48C8DdA7CDB593932C0 --watch --chain goerli --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
 iexec deal show 0x1ad59e11ec17ef3e2fd20c84c97374a30e4ac84bcc6198583ffc75def442ed54
 iexec task show 0x6613028393f078fe0030e6f4bd5e36037c384c73871e61cbd42fc9d50d6695bf --download my-result --chain goerli
 ```
