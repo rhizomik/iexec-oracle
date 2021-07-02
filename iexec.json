@@ -41,7 +41,7 @@
   "dataset": {
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-api-key",
-    "multiaddr": "/ipfs/QmW2WQi7j6c7UgJTarActp7tDNikE4B2qXtFCfLPdsgaTQ",
-    "checksum": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    "multiaddr": "https://github.com/rhizomik/yt-oracle/raw/main/datasets/encrypted/dataset_key.txt.zip",
+    "checksum": "0xb59579cc13e1dc9151cf088b14b02ab011f71843d2af8b9de570625011dd6ac7"
   }
 }

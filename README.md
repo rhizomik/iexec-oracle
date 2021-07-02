@@ -56,28 +56,40 @@ iexec dataset encrypt --algorithm scone
 
 Init the dataset:
 ```
-iexec dataset init --wallet-file UTC--2021-03-06T19-11-03.152000000Z--ABCD1234
+iexec dataset init
+```
+
+Complete the definition of the dataset in `iexec.json`: 
+
+- Set `multiaddr` to a URI pointing to the encrypted dataset, for instance:
+```
+"multiaddr": "https://github.com/rhizomik/yt-oracle/raw/main/datasets/encrypted/dataset_key.txt.zip", 
+```
+
+- And the dataset `checksum` computed using sha246sum:
+```
+sha256sum datasets/encrypted/dataset_key.txt.zip
 ```
 
 And deploy it:
 ```
-iexec dataset deploy --wallet-file UTC--2021-03-06T19-11-03.152000000Z--ABCD1234 --chain goerli
+iexec dataset deploy --chain bellecour
 ```
 
 The dataset is now deployed at and address, for instance:
 ```
-Deployed new dataset at address 0x5269d1AB2553cBEf5B2951635537c651df809c64
+Deployed new dataset at address 0x66685654E2D19C67969b23c0E6F04669180e82C4
 ```
 
 Finally push the secret for the encrypted dataset:
 ```
-iexec dataset push-secret 0x5269d1AB2553cBEf5B2951635537c651df809c64 --secret-path .secrets/datasets/dataset.secret --wallet-file=UTC--2021-03-06T19-11-03.152000000Z--ABCD1234 --chain goerli
+iexec dataset push-secret 0x66685654E2D19C67969b23c0E6F04669180e82C4 --secret-path .secrets/datasets/dataset.secret --chain bellecour
 ```
 
 ## Run Application
 
 ```
-iexec app run --tag tee 0x6432775CF26F100fD573241dAAfA81F10333ef28 --dataset 0xFDD49ECd37aa3eBD0Acfb48C8DdA7CDB593932C0 --watch --chain goerli --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
-iexec deal show 0x1ad59e11ec17ef3e2fd20c84c97374a30e4ac84bcc6198583ffc75def442ed54
-iexec task show 0x6613028393f078fe0030e6f4bd5e36037c384c73871e61cbd42fc9d50d6695bf --download my-result --chain goerli
+iexec app run --tag tee 0x977b662995B54D49BEA3e3A46296C525986EAC6E --dataset 0x66685654E2D19C67969b23c0E6F04669180e82C4 --watch --chain bellecour --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
+iexec deal show 0x474d61096e31c937c46acc3fcd7bc113c0b8a265c75dd1d332b74c7fa1d528dc
+iexec task show 0xcb800430fe9c026e9490f9f68984b9510b5b3e29916db92564afebd2aaa7e513 --download my-result --chain bellecour
 ```
