@@ -18,9 +18,9 @@
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-oracle",
     "type": "DOCKER",
-    "multiaddr": "docker.io/rogargon/yt-oracle:0.0.3",
-    "checksum": "0x29af88eeb7010fd5cfff4df701f8ad79dbaac9b42a7e58bfabd3157bb7eec5d1",
-    "mrenclave": ""
+    "multiaddr": "docker.io/rogargon/yt-oracle:0.0.4",
+    "checksum": "0xca330bd943aeb31cf7d7dd0b49abf1113e25842e28f1b347d7153f2e3206376d",
+    "mrenclave": "90445a13ec75e0bf23ba3f72c350018bfaee88e53b53fa705d4089b05eac3219|faa1309034d66bb53bbb23a7f2b24b1d|b0e6db6e6e092428331c5203de6e65aee694bed0a6c7a4728bddce137e217d65|node /app/index.js"
   },
   "dapps": [
     {

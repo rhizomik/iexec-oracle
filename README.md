@@ -11,15 +11,15 @@ iExec quick start (https://docs.iex.ec/for-developers/quick-start-for-developers
 ```
 iexec wallet create
 iexec init --skip-wallet
-iexec wallet show --chain goerli
-iexec storage init --chain goerli
+iexec wallet show --chain bellecour
+iexec storage init --chain bellecour
 iexec app init
 ```
 
 Build application image:
 ```
-docker build . --tag rogargon/yt-oracle:0.0.3
-docker push rogargon/yt-oracle:0.0.3
+# docker image build . --tag rogargon/yt-oracle:0.0.4 --progress plain
+docker push rogargon/yt-oracle:0.0.4
 ```
 
 NOTE: the digest of the image after pushing should be used as the `app.checkshum` value in `iexec.json`.
@@ -31,15 +31,15 @@ docker run --rm \
     -v $(pwd)/iexec_out:/iexec_out \
     -e IEXEC_IN=/iexec_in \
     -e IEXEC_OUT=/iexec_out \
-    rogargon/yt-oracle:0.0.3 ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8
+    rogargon/yt-oracle:0.0.4 ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8
 ```
 
 Deploy application:
 ```
-iexec app deploy --chain goerli
-iexec wallet getRLC --chain goerli
-iexec account deposit 200 --chain goerli
-iexec account show --chain goerli
+iexec app deploy --chain bellecour
+iexec wallet getRLC --chain bellecour
+iexec account deposit 20000000 --chain bellecour
+iexec account show --chain bellecour
 ```
 
 ## Encrypted Dataset for API Key
