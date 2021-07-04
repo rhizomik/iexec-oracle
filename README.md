@@ -5,6 +5,8 @@ DOracle based on iExec providing YouTube API data on-chain.
 Particularly, use the YouTube API to retrieve a video description using its ID. 
 Then, check if the description contains the input string, e.g. a content hash.
 
+Following guidelines for confidential computing at: https://docs.iex.ec/for-developers/confidential-computing
+
 ## Getting Started
 
 iExec quick start (https://docs.iex.ec/for-developers/quick-start-for-developers):
@@ -18,7 +20,17 @@ iexec app init
 
 Build application image:
 ```
-# docker image build . --tag rogargon/yt-oracle:0.0.4 --progress plain
+docker image build . --tag rogargon/yt-oracle:0.0.4 --progress plain
+```
+
+The image build output includes the result of generating the fingerprint that allows the verification of the application,
+called the `mrenclave`. It should be copied to `iexec.json` and looks like:
+```
+"mrenclave": "d6db85f3ef064946fb28f5b03ef59f5fa2db8b332a576a2be39f5e9ba502bf1d|4d5c4c0721339aef80f12339c2c85b38|b0e6db6e6e092428331c5203de6e65aee694bed0a6c7a4728bddce137e217d65|node /app/index.js"
+```
+
+The image can be now pushed to Docker hub:
+```
 docker push rogargon/yt-oracle:0.0.4
 ```
 
@@ -89,7 +101,7 @@ iexec dataset push-secret 0x66685654E2D19C67969b23c0E6F04669180e82C4 --secret-pa
 ## Run Application
 
 ```
-iexec app run --tag tee 0x977b662995B54D49BEA3e3A46296C525986EAC6E --dataset 0x66685654E2D19C67969b23c0E6F04669180e82C4 --watch --chain bellecour --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
-iexec deal show 0x474d61096e31c937c46acc3fcd7bc113c0b8a265c75dd1d332b74c7fa1d528dc
-iexec task show 0xcb800430fe9c026e9490f9f68984b9510b5b3e29916db92564afebd2aaa7e513 --download my-result --chain bellecour
+iexec app run --tag tee 0x4B7791607BDb72cfA01E67Aed68c702FEB100985 --dataset 0x66685654E2D19C67969b23c0E6F04669180e82C4 --watch --chain bellecour --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
+iexec deal show 0x731d239ce7f8cb725a2f369f48945cb98ec8a9a339c635c11e33c25b75aa9fd5
+iexec task show 0x33f3c70144cd008f6613ae425291673cf1e0c49eb32f58b85cf9ff53c361132c --download my-result --chain bellecour
 ```
