@@ -68,17 +68,17 @@ The `app` configuration in `iexec.json` will look like:
 }
 ```
 
-To test locally:
+To test locally, using the non-TEE version of the image:
 ```
 docker run --rm \
-    -v $(pwd)/datasets:/iexec_in \
+    -v $(pwd)/datasets/original:/iexec_in \
     -v $(pwd)/iexec_out:/iexec_out \
     -e IEXEC_IN=/iexec_in \
     -e IEXEC_OUT=/iexec_out \
-    rogargon/yt-oracle:tee-debug ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8
+    rogargon/yt-oracle:temp-non-tee ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8
 ```
 
-Deploy application:
+Finally, deploy application:
 ```
 iexec app deploy --chain viviani
 ```
