@@ -2,7 +2,7 @@
   "default": "viviani",
   "chains": {
     "goerli": {},
-    "viviani": {},
+    "viviani": { "sms": "https://v6.sms.debug-tee-services.viviani.iex.ec" },
     "mainnet": {},
     "bellecour": {},
     "enterprise": {},
