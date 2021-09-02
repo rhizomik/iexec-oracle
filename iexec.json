@@ -18,9 +18,15 @@
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-oracle",
     "type": "DOCKER",
-    "multiaddr": "docker.io/rogargon/yt-oracle:0.0.4",
-    "checksum": "0x0e1d0fc341493e243e392b00e0a88575a2a6f2391ae60bf4dccc4bfed72e3a57",
-    "mrenclave": "d6db85f3ef064946fb28f5b03ef59f5fa2db8b332a576a2be39f5e9ba502bf1d|4d5c4c0721339aef80f12339c2c85b38|b0e6db6e6e092428331c5203de6e65aee694bed0a6c7a4728bddce137e217d65|node /app/index.js"
+    "multiaddr": "docker.io/rogargon/yt-oracle:tee-debug",
+    "checksum": "0xffa447b6d3be63bc44ad3796ff7692cb9d8c2557fe5c022ca4c9ee66c4da2e5d",
+    "mrenclave": {
+      "provider": "SCONE",
+      "version": "v5",
+      "entrypoint": "node /app/index.js",
+      "heapSize": 1073741824,
+      "fingerprint": "cd67b169f94fd2aa0f7bec43f23e1ba1360372f24bddfe10cb8727366e5bfa77"
+    }
   },
   "dapps": [
     {
@@ -41,7 +47,7 @@
   "dataset": {
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-api-key",
-    "multiaddr": "https://github.com/rhizomik/yt-oracle/raw/main/datasets/encrypted/dataset_key.txt.zip",
-    "checksum": "0xb59579cc13e1dc9151cf088b14b02ab011f71843d2af8b9de570625011dd6ac7"
+    "multiaddr": "https://raw.githubusercontent.com/rhizomik/yt-oracle/main/datasets/encrypted/key.txt.enc",
+    "checksum": "0x6a6897613d2a442fdd4ce1d368439635d608588f5696fd201005de9e1526425f"
   }
 }
