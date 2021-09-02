@@ -42,7 +42,7 @@ async function getAPIKey(API_KEY_PATH) {
                 ['string', 'string', 'bool'], [id, hash, validVideoDescription]);
             const computedJsonObj = {
                 'deterministic-output-path': `${iexecOut}/result.txt`,
-                'callback-data': `${ethers.utils.keccak256(iexecCallback)}`
+                'callback-data': `${iexecCallback}`
             };
             await fsPromises.writeFile(`${iexecOut}/computed.json`, JSON.stringify(computedJsonObj));
         }

@@ -19,13 +19,13 @@
     "name": "yt-oracle",
     "type": "DOCKER",
     "multiaddr": "docker.io/rogargon/yt-oracle:tee-debug",
-    "checksum": "0xffa447b6d3be63bc44ad3796ff7692cb9d8c2557fe5c022ca4c9ee66c4da2e5d",
+    "checksum": "0x79cc1c9ebb0eabde94490e3bd519ba0d8e3f685dce8c54a939d3003a7212ffdc",
     "mrenclave": {
       "provider": "SCONE",
       "version": "v5",
       "entrypoint": "node /app/index.js",
       "heapSize": 1073741824,
-      "fingerprint": "cd67b169f94fd2aa0f7bec43f23e1ba1360372f24bddfe10cb8727366e5bfa77"
+      "fingerprint": "b17ca46661524cad37dd940604a07d30673138bf00ebdbd7baabcb0786ff6342"
     }
   },
   "dapps": [
