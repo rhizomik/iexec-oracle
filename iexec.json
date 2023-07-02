@@ -6,48 +6,18 @@
     "website": "https://rhizomik.net/~roberto",
     "github": "https://github.com/rogargon"
   },
-  "buyConf": {
-    "params": {
-      "iexec_args": ""
-    },
-    "tag": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "trust": "0",
-    "callback": "0x0000000000000000000000000000000000000000"
-  },
   "app": {
     "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
     "name": "yt-oracle",
     "type": "DOCKER",
     "multiaddr": "docker.io/rogargon/yt-oracle:tee-debug",
-    "checksum": "0x79cc1c9ebb0eabde94490e3bd519ba0d8e3f685dce8c54a939d3003a7212ffdc",
+    "checksum": "0xc7e172ef2b7d40f0a1eab8c82f28f22775af943c4a22dcdba133fcef191eba0e",
     "mrenclave": {
-      "provider": "SCONE",
+      "framework": "SCONE",
       "version": "v5",
       "entrypoint": "node /app/index.js",
       "heapSize": 1073741824,
-      "fingerprint": "b17ca46661524cad37dd940604a07d30673138bf00ebdbd7baabcb0786ff6342"
+      "fingerprint": "0e938832816e0da3e27a43670316a1b9333cd34112f13dca1546e62608701a37"
     }
-  },
-  "dapps": [
-    {
-      "name": "Recomanded-dapp-for-MyDataset",
-      "addresses": {
-        "5": "0x0000000000000000000000000000000000000000"
-      },
-      "buyConf": {
-        "params": {
-          "iexec_args": ""
-        },
-        "tag": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "trust": "0",
-        "callback": "0x0000000000000000000000000000000000000000"
-      }
-    }
-  ],
-  "dataset": {
-    "owner": "0xA5F57BDe93496562D63f5ad10a639237ecD48B31",
-    "name": "yt-api-key",
-    "multiaddr": "https://raw.githubusercontent.com/rhizomik/yt-oracle/main/datasets/encrypted/key.txt.enc",
-    "checksum": "0x6a6897613d2a442fdd4ce1d368439635d608588f5696fd201005de9e1526425f"
   }
 }

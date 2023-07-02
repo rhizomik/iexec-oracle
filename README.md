@@ -13,8 +13,8 @@ iExec quick start (https://docs.iex.ec/for-developers/quick-start-for-developers
 ```
 iexec wallet create
 iexec init --skip-wallet
-iexec wallet show --chain viviani
-iexec storage init --chain viviani
+iexec wallet show --chain bellecour
+iexec storage init --chain bellecour
 ```
 
 ## Build Trusted Application
@@ -37,15 +37,19 @@ docker login registry.scontain.com:5050
 The image build output includes the result of generating the fingerprint that allows the verification of the application,
 called the `mrenclave`. It should be copied to `iexec.json` and looks like:
 ```
-"mrenclave": "b17ca46661524cad37dd940604a07d30673138bf00ebdbd7baabcb0786ff6342"
+"mrenclave": "0e938832816e0da3e27a43670316a1b9333cd34112f13dca1546e62608701a37"
 ```
 
 The image can be now pushed to Docker hub:
-```
+```shell
 docker push rogargon/yt-oracle:tee-debug
 ```
 
-NOTE: the digest of the image after pushing should be used as the `app.checkshum` value in `iexec.json`.
+NOTE: the digest of the image after pushing should be used as the `app.checkshum` value in `iexec.json`. 
+It can be also computed using the command:
+```shell
+docker pull rogargon/yt-oracle:tee-debug | grep "Digest: sha256:" | sed 's/.*sha256:/0x/'
+```
 
 The `app` configuration in `iexec.json` will look like:
 
@@ -56,22 +60,22 @@ The `app` configuration in `iexec.json` will look like:
     "name": "yt-oracle",
     "type": "DOCKER",
     "multiaddr": "docker.io/rogargon/yt-oracle:tee-debug",
-    "checksum": "0x79cc1c9ebb0eabde94490e3bd519ba0d8e3f685dce8c54a939d3003a7212ffdc",
+    "checksum": "0xc7bbef0dcaadc526a96c7d76b7df49c5f600466f27faa3911727539142da393e",
     "mrenclave": {
-      "provider": "SCONE",
+      "framework": "SCONE",
       "version": "v5",
       "entrypoint": "node /app/index.js",
       "heapSize": 1073741824,
-      "fingerprint": "b17ca46661524cad37dd940604a07d30673138bf00ebdbd7baabcb0786ff6342"
+      "fingerprint": "0e938832816e0da3e27a43670316a1b9333cd34112f13dca1546e62608701a37"
     }
   }
 }
 ```
 
 To test locally, using the non-TEE version of the image:
-```
+```shell
 docker run --rm \
-    -v $(pwd)/datasets/original:/iexec_in \
+    -e IEXEC_APP_DEVELOPER_SECRET=<API_KEY> \
     -v $(pwd)/iexec_out:/iexec_out \
     -e IEXEC_IN=/iexec_in \
     -e IEXEC_OUT=/iexec_out \
@@ -79,78 +83,49 @@ docker run --rm \
 ```
 
 Finally, deploy application:
-```
-iexec app deploy --chain viviani
-```
-
-## Encrypted Dataset for API Key
-
-Initialize encrypted dataset:
-```
-iexec dataset init --encrypted
+```shell
+iexec app deploy --chain bellecour
 ```
 
-Add file `datasets/original/key.txt` with the API Key. Then, encrypt it:
-```
-iexec dataset encrypt
+## Push an application developer secret to the SMS
+
+Push the secret API key to the SMS, which will be accessible as `IEXEC_APP_DEVELOPER_SECRET` environment variable:
+```shell
+iexec app push-secret --chain bellecour
 ```
 
-Init the dataset:
-```
-iexec dataset init
-```
-
-Complete the definition of the dataset in `iexec.json`: 
-
-- Set `multiaddr` to a URI pointing to the encrypted dataset, for instance, if pushed to GitHub:
-```
-"multiaddr": "https://raw.githubusercontent.com/rhizomik/yt-oracle/main/datasets/encrypted/key.txt.enc", 
-```
-
-- And the dataset `checksum` computed using sha246sum:
-```
-sha256sum datasets/encrypted/key.txt.enc
-```
-
-And deploy it:
-```
-iexec dataset deploy --chain viviani
-```
-
-The dataset is now deployed at and address, for instance:
-```
-Deployed new dataset at address 0x4dd80de288BA06c95a7246f3418fe7B38fe6C293
-```
-
-Add to `chain.json` the SMS for chain viviani:
-
-```
-   "viviani": { "sms": "https://v6.sms.debug-tee-services.viviani.iex.ec" },
-```
-
-Finally push the secret for the encrypted dataset
-```
-iexec dataset push-secret --chain viviani
-iexec dataset check-secret --chain viviani
+The existence of the secret can be checked using:
+```shell
+iexec app check-secret --chain bellecour
 ```
 
 ## Run Application
 
-To run the application, and send the results to the smart contract address specified by the `callback` parameter,
-use the following command (Note: chain parameter not defined so using default as set in `chain.json`, viviani)
-
+Before running the application, initialize the storage:
 ```shell
-iexec app run 0x345B8215b629cD0c4D97F53A24D3de14706d26EB --tag tee \
-  --dataset 0x4dd80de288BA06c95a7246f3418fe7B38fe6C293 --workerpool 0xe6806E69BA8650AF23264702ddD43C4DCe35CcCe \
-  --callback 0x0C22D575B783CE85322533f11334855dD24Ef936 \
-  --watch --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8"
+iexec storage init --chain bellecour --tee-framework scone
+```
+
+To run the application, and send the results to the smart contract address specified by the `callback` parameter,
+use the following command:
+```shell  
+iexec app run 0xe5F19dbf1eeE610E03277797925B22a3855d7448 --tag tee,scone \
+  --workerpool debug-v8-bellecour.main.pools.iexec.eth --watch \
+  --args "ZwVNLDIJKVA QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8" \
+  --callback 0x36dA71ccAd7A67053f0a4d9D5f55b725C9A25A3E \
+  --chain bellecour
+```
+
+The task execution log can be accesses using the command:
+```shell
+iexec task debug 0x75e60721f4a11af35ca390867e7847c852b5d4036ba48cffda89b3f5571f02a0 --logs
 ```
 
 Finally, you can inspect the resulting deal and task using the following commands:
 
 ```
-iexec deal show 0xfc3faed714deab11de1ca27038efa85acae655e08d7f120db6f82e8813ebda60
-iexec task show 0xf58caf12e2ef8df8907b851765e1f631e467b84d111289ac4b1097008b474142
+iexec deal show 0xe52499f478c91af50ba6834675998461f0290a0ca1cc58f82daad400d535cb51
+iexec task show 0x75e60721f4a11af35ca390867e7847c852b5d4036ba48cffda89b3f5571f02a0
 ```
 
 The output for the task includes the `resultsCallback` field with the ABI encoding of the output, for instance:

@@ -1,10 +1,10 @@
 {
-  "default": "viviani",
+  "default": "bellecour",
   "chains": {
     "goerli": {},
     "viviani": { "sms": "https://v6.sms.debug-tee-services.viviani.iex.ec" },
     "mainnet": {},
-    "bellecour": {},
+    "bellecour": { "sms": { "scone": "https://sms.scone-debug.v8-bellecour.iex.ec" } },
     "enterprise": {},
     "enterprise-testnet": {}
   },
